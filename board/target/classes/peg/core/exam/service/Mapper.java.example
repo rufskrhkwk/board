@@ -1,0 +1,35 @@
+package ${package}.service;
+
+import java.util.List;
+import java.util.Map;
+
+import egovframework.rte.psl.dataaccess.mapper.Mapper;
+import egovframework.rte.psl.dataaccess.util.EgovMap;
+
+
+/**
+ * @Class Name	: ${program}Mapper.java
+ * @Description : ${program} 업무 데이터처리 Mapper Interface
+ * 
+ * @author	xxx(xxxx@pegsystem.co.kr)
+ * @since	xxxx.xx.xx
+ * @version	1.0
+ * @see
+ * Copyright (C) PEGSYSTEM <http://www.pegsystem.co.kr>
+ * 
+ * 
+ * @Modification Information
+ *	  Date		  Modifier		Comment
+ *  ----------   ----------    -------------------
+ *  xxxx.xx.xx	  xxx   		최초생성
+ */
+@Mapper("${program}Mapper")
+public interface ${program}Mapper {
+	/**
+	 * p2t_cd_d 테이블 조회
+	 * @param	param: 조회조건(String cd_nm, String use_yn)
+	 * @return	list : 코드리스트(List<EgovMap>)
+	 * @return
+	 */
+	public List<EgovMap> selectCdList(Map<String, Object> param);
+}
