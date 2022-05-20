@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+	
+    <!-- 검증을 수행하는 bean 생성 -->
+    
+    <bean id="beanValidator" class="org.springmodules.validation.commons.DefaultBeanValidator">
+        <property name="validatorFactory" ref="validatorFactory"/>
+    </bean>
+	
+    <!-- 
+    	validation-rule : 사용되는 모든 규칙을 가지고 있는 파일 
+    	validator(let폴더 아래 파일) : 입력폼에서 규칙이 어떻게 적용되는지에 대한 정보를 가진 파일.
+    							    폼별로 여러개를 나워서 만들 수 있다.
+    	=> DefaultValidatorFactory가 Commons Validator들의 인스턴스를 생성.
+     -->
+    <bean id="validatorFactory" class="org.springmodules.validation.commons.DefaultValidatorFactory">
+        <property name="validationConfigLocations">
+            <list>
+                <value>classpath:/jf-core/validator/com-rules.xml</value>
+                <value>classpath:/jf-core/validator/validator-rules.xml</value>
+	            <value>classpath:/jf-core/validator/let/**/*.xml</value>
+            </list>
+        </property>
+    </bean>
+   
+</beans>

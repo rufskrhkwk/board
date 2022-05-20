@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* ///////////////////////////////////////// 
+	=user style
+///////////////////////////////////////// */	
+/*
+    NAMING RULES
+    
+    1. TABLE : 
+        ex) tbl_용도_순서 : tbl_search_1, tbl_list_2, tbl_Header_1, tbl_Body_1...
+
+    2. INPUT :
+        ex) ipt_속성_순서 : ipt_text_1, ipt_checkbox_1, ipt_password_1, ipt_number_1, ipt_file_1 ...
+
+    3. BUTTON :
+        ex) btn_형태_용도 : btn_Icon_search(이미지), btn_text_search(텍스트) ...
+
+*/
+
+
+/* SEARCH TABLE */
+
+    table.tbl_search_1{ width:1000px }
+    table.tbl_search_1 tr th{ height:30px;width:20% }
+    table.tbl_search_1 tr td{ height:30px;width:30% }
+
+    /* 버튼 - 검색 */
+    table.tbl_search_1 tr td .btn_Icon_search{ margin:1px 0 0 4px}
+
+
+
+
+
+/* DETAIL TABLE - 1단 테이블  */
+		table.tbl_DetailTbl_1[summary=TEMPLATE_DETAIL]{ border:0px solid #ccc;border-top:2px solid #a88 }
+		table.tbl_DetailTbl_1[summary=TEMPLATE_DETAIL] tr th{ background:#F5EFE9 }
+		table.tbl_DetailTbl_1[summary=TEMPLATE_DETAIL] tr th:last-child,
+		table.tbl_DetailTbl_1[summary=TEMPLATE_DETAIL] tr td:last-child{ border-left:0;border-right:0 }
+
+
+
+
+/* LIST DETAIL TABLE - 2단 분리 테이블  : TEMPLATE */
+
+    /* HEADER */
+	div.listTblWrap_Header{ width:1000px;height:29px }
+		table.tbl_Header_1{ width:1201px }
+		table.tbl_Header_1 tr th{ height:29px }
+
+
+	/* BODY */
+	div.listTblWrap_Body{ width:1000px;height:200px }
+		table.tbl_Body_1{ width:1183px }
+		table.tbl_Body_1 tr td{ height:25px }
+
+
+
+
