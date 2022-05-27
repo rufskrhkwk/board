@@ -36,8 +36,7 @@ public class FileUtils {
 		}
 		
 		Iterator<String> iterator = multipartRequest.getFileNames();
-		
-		String newfilename, originalfileName, extension;
+		String newfilename, extension;
 		extension = "undefined";
 		
 		while(iterator.hasNext()) {

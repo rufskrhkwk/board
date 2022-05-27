@@ -1,5 +1,6 @@
 package peg.board.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -20,4 +21,5 @@ public interface BoardService {
 	public void countUpadte(int idx);
 	public List<String> filelist(int idx);
 	public FileVO selectboardfile(String filename);
+	public boolean matchWriter(int groupno, Principal principal);
 }

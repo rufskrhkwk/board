@@ -19,17 +19,8 @@ public interface BoardMapper {
 		public int boardInsert(BoardVO vo);
 		public BoardVO boardContents(int idx);
 		public void boardUpdate(BoardVO vo);
-		
-		@Delete("delete from board where idx=#{idx}")
 		public void boardDelete(int idx);		
-		
-		@Update("update board set contents=#{contents} where idx=#{idx}")
-		public void boardContentUpdateAjax(BoardVO vo);
-		
-		@Update("update board set title=#{title}, writer=#{writer} where idx=#{idx}")
 		public void boardTWUpdateAjax(BoardVO vo);
-		
-		@Update("update board set count = count + 1 where idx=#{idx}")
 		public void countUpdate(int idx);
 		
 		//첨부파일
@@ -39,4 +30,7 @@ public interface BoardMapper {
 		public void deletefile(int idx) throws Exception;
 		public void insertfile(List<FileVO> list) throws Exception;
 		public FileVO selectfile(String filename);
+		
+		//원글 작성자 찾기
+		public String findWriter(int groupno);
 }

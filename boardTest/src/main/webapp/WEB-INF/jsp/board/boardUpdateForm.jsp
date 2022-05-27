@@ -27,7 +27,7 @@
 			<div class="panel-heading">Spring Board</div>
 			<div class="panel-body">
 			
-				<!-- 게시판 글 수정 화면 만들기 -->
+		<!-- 게시판 글 수정 화면 만들기 -->
 				<form class="form-horizontal" action="${cpath}/boardUpdate" method="post">
 					
 					<input type="hidden" name="idx" value="${vo.idx}">
@@ -53,7 +53,7 @@
 						</div>
 					</div>
 					
-					<!-- 서버에 들어온 요청이 실제 서버에서 허용한 요청이 맞는지 확인하기 위한 토큰 -->
+			<!-- 서버에 들어온 요청이 실제 서버에서 허용한 요청이 맞는지 확인하기 위한 토큰 -->
 					<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 				  
 					<div class="form-group">

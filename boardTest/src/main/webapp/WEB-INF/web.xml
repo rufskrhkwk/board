@@ -42,6 +42,21 @@
 <!-- 		<url-pattern>*.do</url-pattern> -->
 <!-- 	</filter-mapping> -->
 
+<!-- 
+	multipart/form-data로 파일을 업로드 하는 경우 FilterChain(web.xml에 넣어준)을 타지 않는 제약 사항이 발생.
+	그래서 이 경우에는 springMultipartFilter를 springSecurityFilterChain 앞에 넣어줘야 한다.
+	+)Tomcat의 context.xml에 allowCasualMultipartParsing 속성 추가.
+-->
+	<filter>
+		<display-name>springMultipartFilter</display-name>
+		<filter-name>springMultipartFilter</filter-name>
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springMultipartFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- Spring Security filter -->
 	 <filter>
       <filter-name>springSecurityFilterChain</filter-name>

@@ -17,7 +17,7 @@ public class Page {
 	
 	public Page() { //최초 게시판 접근시 기본 셋팅
 		this.currentPage=1;
-		this.perPageNum=5;
+		this.perPageNum=10;
 	}
 
 	public void setCurrentPage(int page) { //페이지값이 음수가 되지 않게 설정

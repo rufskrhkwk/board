@@ -1,5 +1,6 @@
 package peg.board.service.impl;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -44,8 +45,8 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void boardInsert(BoardVO vo, MultipartHttpServletRequest multipartRequest) throws Exception {
-		mapper.boardInsert(vo);
 		
+		mapper.boardInsert(vo);
 		
 		if(multipartRequest != null) {
 			List<FileVO> list = fileUtils.paseFileInfo(vo.getIdx(), multipartRequest);			
@@ -89,6 +90,20 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public FileVO selectboardfile(String filename) {
 		return mapper.selectfile(filename);
+	}
+
+	@Override
+	public boolean matchWriter(int groupno, Principal principal) {
+		String writer = mapper.findWriter(groupno);
+		log.debug("==============================================================");
+		log.debug("사용자 계정 : " + principal.getName());
+		log.debug("원글 작성자 계정 : " + writer);
+		log.debug("==============================================================");
+		if(principal.getName().equals(writer)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }
