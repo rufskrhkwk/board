@@ -95,23 +95,23 @@ public class RefreshableSqlSessionFactoryBean extends SqlSessionFactoryBean impl
 
 		proxy = (SqlSessionFactory) Proxy.newProxyInstance(
 
-		SqlSessionFactory.class.getClassLoader(),
+				SqlSessionFactory.class.getClassLoader(),
 
-		new Class[] { SqlSessionFactory.class },
+				new Class[] { SqlSessionFactory.class },
 
-		new InvocationHandler() {
+				new InvocationHandler() {
 
-			public Object invoke(Object proxy, Method method,
+					public Object invoke(Object proxy, Method method,
 
-			Object[] args) throws Throwable {
+							Object[] args) throws Throwable {
 
-				// log.debug("method.getName() : " + method.getName());
+						// log.debug("method.getName() : " + method.getName());
 
-				return method.invoke(getParentObject(), args);
+						return method.invoke(getParentObject(), args);
 
-			}
+					}
 
-		});
+				});
 
 		task = new TimerTask() {
 

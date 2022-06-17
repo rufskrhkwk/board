@@ -6,21 +6,26 @@
     	 원글은 작성된 역순으로 정렬하고
     	 답글은 작성된 순으로 정렬한다.
     ============================================
-	글번호	제목				사용자명	          날짜
-	78		aaaa			user1
-	104		    ㄴ aaaa의 답글1		mem1
-	105		    ㄴ aaaa의 답글2		mem2
-	107		        ㄴ aaaa의 답글2-1	mem1
-	108		        ㄴ aaaa의 답글2-2	user1
-	105		   ㄴ aaaa의 답글3		mem3
+	글번호	제목						사용자명
+	78		aaaa					user1
+	104		    ㄴ aaaa의 답글1			mem1
+	105		    ㄴ aaaa의 답글2			mem2
+	107		        ㄴ aaaa의 답글2-1		mem1
+	108		        ㄴ aaaa의 답글2-2		user1
+	105		   ㄴ aaaa의 답글3			mem3
+	77		bbbbb					mem2
 	============================================
 	
 	postgre 계층형 구조를 위한 쿼리
 	with recursive view이름(보여주고 싶은 컬럼){
 		부모 쿼리 작성, 데이터 시작 조건을 구하는 쿼리
-		union all 또는 union 연산
+		union all
 		계층구조 작성, 하위 데이터를 찾아가기 위한 반복 쿼리
 	} select * from 뷰명;
+	
+	level : 계층형 구조에서 단계, 레벨을 나타내는 함수
+	cycle : recursive를 통한 재귀 쿼리 수행시 성능 상의 문제를 해결하기 위해 사용.
+			path 배열에 저장된 ID값이 있는지 확인하여 이미 찾은 값에 대해서는 데이터 검색을 수행하지 않도록 한다.
     
      -->
     <select id="boardList" resultType="peg.board.vo.BoardVO" parameterType="peg.board.vo.Page">

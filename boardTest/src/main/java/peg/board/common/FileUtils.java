@@ -43,7 +43,7 @@ public class FileUtils {
 			List<MultipartFile> list = multipartRequest.getFiles(iterator.next());
 			for(MultipartFile multipartFile : list) {
 				if(multipartFile.getSize() > 0) {
-					//파일 확장자 확인 : nio, Apache Tika로 확인
+					//파일 확장자 Apache Tika로 확인. 파일의 확장자를 변조하여도 정확한 mine-type을 얻을 수 있다.
 					extension = FilenameUtils.getExtension(multipartFile.getOriginalFilename());
 					log.debug("==============================================");
 					log.debug("file extension : " + extension);

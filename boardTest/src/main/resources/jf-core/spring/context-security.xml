@@ -15,6 +15,7 @@
 		<!-- 모든 url 패턴에 ROLE_USER의 권한을 가지고 있을때만 접근가능 -->
 		<!-- <intercept-url pattern="/**" access="ROLE_USER" /> -->
 		<intercept-url pattern="/userPage/**" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/adminPage/**" access="hasRole('ROLE_ADMIN')"/>
 		<intercept-url pattern="/**" access="permitAll"/>
 		<access-denied-handler ref="userDeniedHandler" />
 
@@ -25,8 +26,12 @@
 			password-parameter="pw"
 			login-processing-url="/memberLogin"
 			login-page="/"
-			default-target-url="/"
+			authentication-success-handler-ref="loginSuccessHandler"
+			authentication-failure-url="/"
 		/>
+		<!-- form-login 안에서 로그인이 성공하거나 실패했을때
+			이동시킬 기본 URL 설정 
+			default-target-url="/" -->
 
 		<!-- 로그아웃할 url 및 로그아웃성공시 이동할 url -->
 
@@ -35,21 +40,48 @@
 			logout-success-url="/"
 			invalidate-session="true"
 			delete-cookies="true" />
-
+		
+		
+		<!-- remember-me 자동로그인 설정. -->
 		<remember-me data-source-ref="dataSource"
             remember-me-parameter="remember-me"
             token-validity-seconds="604800"/>
-
          <!-- <remember-me services-ref="" /> -->
+
+
+		<!--
+		커스텀 필터 순서 설정 1 - 맨 앞
+		<security:custom-filter before="FIRST" ref="customFilter"/>
+		
+		커스텀 필터 순서 설정 2 - 맨 뒤
+		<security:custom-filter before="LAST" ref="customFilter"/>
+		
+		커스텀 필터 순서 설정3 - 기존 spring security filter와 교체
+		단 이 경우 auto-config = false로 설정하고 그에 따른 별도 설정을 해줘야한다.
+		<security:custom-filter position="FORM_LOGIN_FILTER" ref="customFilter"/>
+	 	-->
+
 	</http>
-	 <beans:bean id="userDeniedHandler" class="peg.security.UserDeniedHandler"></beans:bean>
+
+	<beans:bean id="userDeniedHandler" class="peg.security.UserDeniedHandler"></beans:bean>
 
 	<authentication-manager>
 		<authentication-provider ref="userAuthProvider"></authentication-provider>
 		<authentication-provider user-service-ref="userService"></authentication-provider>
 	</authentication-manager>
-
+	
+	<!-- 로그인 성공 후 Role에 따른 페이지 이동을 위한 설정 -->
+	<beans:bean id="loginSuccessHandler" class="peg.security.LoginSuccessHandler">
+	    <beans:property name="loginId" value="loginId"/>
+	    <beans:property name="defaultUrl" value="/page/test"/>
+	</beans:bean>
+	
 	<beans:bean id="userService" class="peg.board.service.CustomUserDetailsService"/>
 	<beans:bean id="userAuthProvider" class="peg.security.CustomAuthenticationProvider"/>
+	
+	<!-- 커스텀 필터 설정 
+	<bean id="customfilter" class="peg.security.customfilter" />
+	-->
+	
 
 </beans:beans>

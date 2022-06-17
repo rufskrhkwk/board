@@ -3,6 +3,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="cpath" value="${pageContext.request.contextPath}"/>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +45,7 @@
 				
 				<!--"isAuthenticated()" 인증받은 사용자 = 로그인한 경우-->
 				<sec:authorize access="isAuthenticated()">
-					<label><sec:authentication property="principal.username"/>님 방문을 환영합니다.</label>
+					<label><sec:authentication property="principal"/>님 방문을 환영합니다.</label>
 					<button onclick="location.href='${cpath}/logout'">로그아웃</button>
 					<button onclick="location.href='${cpath}/list'">게시판으로 가기</button>
 				</sec:authorize>

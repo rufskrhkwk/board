@@ -81,7 +81,7 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="writer">첨부파일: </label>
 						<div class="col-sm-10">
-							<input type="file" id="filename" name="filename" placeholder="첨부파일"  multiple="multiple" maxlength="2" style="border:0 solid black;"/>
+							<input type="file" id="files" name="files" placeholder="첨부파일"  multiple="multiple" maxlength="2" style="border:0 solid black;"/>
 							<div class="file-list"></div>
 					    </div>
 					</div>

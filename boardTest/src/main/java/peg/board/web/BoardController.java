@@ -37,6 +37,7 @@ public class BoardController {
 	 * controller에 하나하나 안 하는 방법?
 	 *  -> url 패턴화하여 filter를 이용해 한번에 제어 ?
 	 */
+	
 	@Autowired
 	BoardService service;
 	
@@ -73,6 +74,7 @@ public class BoardController {
 				
 		BoardVO vo= service.boardContents(idx);
 		boolean matchResult = service.matchWriter(vo.getGroupno(), principal);
+		
 		if(vo.isSecret()) { //비밀글일때 확인
 			if(!matchResult) {//false인 경우 글목록으로 돌려보냄.
 				ModelAndView mav = new ModelAndView("alert");
@@ -81,8 +83,8 @@ public class BoardController {
 				return mav;
 			}
 		}
+		
 		ModelAndView mav = new ModelAndView("boardcontent");
-
 		List<String> file = service.filelist(idx);
 		
 		mav.addObject("vo",vo);
@@ -108,16 +110,17 @@ public class BoardController {
 	public String boardInsert(@ModelAttribute("boardVO") BoardVO boardVO, MultipartHttpServletRequest multipartRequest,
 			BindingResult bindingResult, Model model) throws Exception {
 		
-		MultipartFile files = multipartRequest.getFile("tempfile");
+		List<MultipartFile> files = multipartRequest.getFiles("files");
 		
-		//title 또는 contents가 비어있으면 입력되지않고 다시 insertform으로 이동한다.
-		//+) long count = files.stream().filter(t -> !t.isEmpty()).count();이 2 초과하면 다시 돌려보내기.
+		/*title 또는 contents가 비어있거나 
+		 * 업로드된 파일의 개수가 2개 이상일 경우 
+		 * 입력되지않고 다시 insertform으로 이동한다.
+		 */
 		validator.validate(boardVO, bindingResult);
-		if(bindingResult.hasErrors()) {
+		if(bindingResult.hasErrors() || files.size()>2) {
 			model.addAttribute("boardvo",boardVO);
 			return "/boardInsertForm";
 		}
-
 		
 		service.boardInsert(boardVO, multipartRequest);
 		return "redirect:/list";

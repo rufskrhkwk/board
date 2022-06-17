@@ -90,11 +90,11 @@ public class AltibaseClobStringTypeHandler extends AbstractLobTypeHandler {
     	// 2011.10.10 보안점검 후속조치
 	    } finally {
 		    if (rd != null) {
-			try {
-			    rd.close();
-			} catch (Exception ignore) {
-				LOGGER.debug("IGNORE: {}", ignore.getMessage());
-			}
+				try {
+				    rd.close();
+				} catch (Exception ignore) {
+					LOGGER.debug("IGNORE: {}", ignore.getMessage());
+				}
 		    }
 		}
 

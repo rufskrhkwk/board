@@ -8,14 +8,15 @@ import peg.board.service.MemberService;
 import peg.board.vo.MemberVO;
 
 @Service
-public class MemberServiceimpl implements MemberService{
+public class MemberServiceimpl implements MemberService {
 
 	@Autowired
 	MemberMapper mapper;
-	
+
 	@Override
 	public MemberVO memberLogin(MemberVO member) {
 		MemberVO vo = mapper.memberLogin(member);
+		
 		return vo;
 	}
 

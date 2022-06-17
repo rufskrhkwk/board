@@ -17,7 +17,7 @@ public class UserDeniedHandler implements AccessDeniedHandler{
 	 * 권한이 없는 페이지에 접속할 시 발생.
 	 */
 
-	private String errorPage = "/WEB-INF/jsp/egovframework/example/sample/errorPage.jsp";
+	private String errorPage = "/WEB-INF/jsp/board/alert.jsp";
 	
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
