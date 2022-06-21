@@ -9,7 +9,7 @@
    </select>
    
    <select id="getMemberById" parameterType="String" resultType="peg.board.vo.MemberVO">
-       select id, pw, memberAuthority, memberEnabled
+       select id, pw, memberAuthority, memberEnabled, isEnabled
        from member
        where id=#{id}
    </select>

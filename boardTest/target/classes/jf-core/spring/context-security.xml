@@ -27,7 +27,7 @@
 			login-processing-url="/memberLogin"
 			login-page="/"
 			authentication-success-handler-ref="loginSuccessHandler"
-			authentication-failure-url="/"
+			authentication-failure-handler-ref="LoginFailureHandler"
 		/>
 		<!-- form-login 안에서 로그인이 성공하거나 실패했을때
 			이동시킬 기본 URL 설정 
@@ -75,6 +75,9 @@
 	    <beans:property name="loginId" value="loginId"/>
 	    <beans:property name="defaultUrl" value="/page/test"/>
 	</beans:bean>
+	
+	<!-- 로그인 실패시 에러 메세지 출력 -->
+	<beans:bean id="LoginFailureHandler" class="peg.security.LoginFailureHandler"/>
 	
 	<beans:bean id="userService" class="peg.board.service.CustomUserDetailsService"/>
 	<beans:bean id="userAuthProvider" class="peg.security.CustomAuthenticationProvider"/>

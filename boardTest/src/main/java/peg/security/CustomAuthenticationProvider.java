@@ -17,14 +17,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		System.out.println("authentication : " + authentication);
 
 		String loginId = String.valueOf(authentication.getPrincipal());
 		String loginPw = String.valueOf(authentication.getCredentials());
-		System.out.println("로그인 시켜줌 member info : " + loginId + loginPw);
 		
 		MemberVO vo = (MemberVO) service.loadUserByUsername(loginId);
-		System.out.println("뭔데 왜 로그인이 되는 건데" + vo.getPw());
 		
 		if(!loginPw.equals(vo.getPw())) {
 			throw new BadCredentialsException(loginId);

@@ -24,9 +24,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException(username);
 		}
 
-		if (vo != null) {
-			System.out.println("로그인 성공");
-		}
 		return vo;
 	}
 

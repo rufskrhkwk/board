@@ -2,6 +2,7 @@ package peg.board.web;
 
 import java.security.Principal;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import peg.board.common.MailHandler;
 import peg.board.service.MemberService;
 
 @Controller
@@ -16,14 +18,12 @@ public class MemberController {
 
 	@Autowired
 	MemberService service;
+	@Resource(name = "mailHandler")
+	private MailHandler mailHandler;
 
-	@RequestMapping(value = "/memberLogin", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginFail", method = RequestMethod.POST)
 	public String memberLogin() throws Exception {
-		/*
-		 * 로그인 처리는 security에서 해줌. MemberVO memberInfo = service.memberLogin(member);
-		 * session.setAttribute("memberInfo", memberInfo);
-		 */
-		return "redirect:/";
+		return "errorTest";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -41,6 +41,9 @@ public class MemberController {
 
 	@RequestMapping(value = "/adminPage/member", method = RequestMethod.GET)
 	public String testadminpage() {
+		System.out.println("메일 전송 테스트");
+		String msg = mailHandler.sendMail();
+		System.out.println("메일 전송 테스트 : " + msg);
 		return "onlyadmin";
 	}
 

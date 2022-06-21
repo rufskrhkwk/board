@@ -300,6 +300,18 @@
 			<artifactId>spring-security-test</artifactId>
 			<version>${security.version}</version>
 		</dependency>
+		
+		<!-- 메일 전송을 위한 dependency -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.2.3.RELEASE</version>
+		</dependency>
 				
 	</dependencies>
 
